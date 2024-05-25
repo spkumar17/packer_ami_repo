@@ -46,5 +46,3 @@ build {
     "/bin/bash -x /tmp/provisioner.sh"
   ]
 }
-
-  
