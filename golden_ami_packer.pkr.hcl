@@ -22,6 +22,7 @@ build {
                     ]
 
   }
+}
 
   # Define what to install, configure, and execute
   provisioner "file" {
@@ -38,7 +39,7 @@ build {
       "/bin/bash -x /tmp/provisioner.sh"
     ]
   }
-}
+
 
 }
 
