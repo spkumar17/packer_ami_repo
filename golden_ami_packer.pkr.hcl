@@ -29,7 +29,7 @@ source "amazon-chroot" "amazon-linux" {                 #To modify an AMI direct
 build {
   name = "hq-packer"
   sources = [
-    "source.amazon-ebs.amazon-linux"
+    "source.amazon-chroot.amazon-linux"
   ]
 
 
