@@ -25,11 +25,10 @@ pipeline {
                         secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
                     ]
                 ]) {
-                    sh "packer init golden_ami_packer.hcl"
-                    sh "packer build golden_ami_packer.hcl"
+                    sh "packer init golden_ami_packer.pkr.hcl"
+                    sh "packer build golden_ami_packer.pkr.hcl"
                 }
             }
         }
     }
 }
-
