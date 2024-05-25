@@ -22,3 +22,5 @@ sudo bash install
 #install docker 
 sudo yum install docker -y
 sudo systemctl start docker
+
+#need to install more 
