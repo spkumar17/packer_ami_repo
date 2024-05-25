@@ -31,7 +31,7 @@ build {
   sources = [
     "source.amazon-ebs.amazon-linux"
   ]
-}
+
 
   provisioner "file" {
   source = "provisioner.sh"
@@ -46,4 +46,5 @@ build {
     "cat /tmp/provisioner.sh",
     "/bin/bash -x /tmp/provisioner.sh"
   ]
+}
 }
