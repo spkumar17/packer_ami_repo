@@ -11,7 +11,7 @@ build {
   name = "hq-packer"
 
   # Specify the builder
-  builder "amazon-chroot" {
+  builder "amazon-chroot" "ubuntu" {
     region        = "ap-southeast-2"
     ami_name      = "ami-version-1.0.1-{{timestamp}}"
     instance_type = "t2.micro"
