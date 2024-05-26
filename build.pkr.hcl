@@ -1,28 +1,25 @@
 build {
-  name = "e2esa-packer-ubuntu-build"
+  name    = "hq-packer"
   sources = [
     "source.amazon-ebs.ubuntu"
-    //"source.amazon-ebs.win"
   ]
+
+  provisioner "file" {
+    source      = "provisioner.sh"
+    destination = "/tmp/provisioner.sh"
+  }
+
   provisioner "shell" {
-    environment_vars = [
-      "TEMP=hello world",
-    ]
-    execute_command = local.execute_command
     inline = [
-      "echo Installing nginx",
-      "sleep 30",
-      "sudo apt-get update",
-      "sudo apt-get install nginx -y",
-      "sudo systemctl enable nginx",
-      "sudo systemctl start nginx",
-      "sudo ufw allow proto tcp from any to any port 22,80,443",
-      "echo 'y' | sudo ufw enable",
-      "echo \"Variable value is $TEMP\" > demo.txt"
+      "chmod a+x /tmp/provisioner.sh",
+      "ls -la /tmp",
+      "pwd",
+      "cat /tmp/provisioner.sh",
+      "/bin/bash -x /tmp/provisioner.sh"
     ]
   }
 
-  //post-processor "vagrant" {}
-  //post-processor "compress" {}
-
+  // post-processor "vagrant" {}
+  // post-processor "compress" {}
 }
+

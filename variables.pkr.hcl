@@ -1,26 +1,27 @@
-
 # Common
-variable profile {
+variable "profile" {
   type        = string
-  description = "aws profile name"
+  description = "AWS profile name"
 }
 
-variable instance {
-  type = string
-}
-variable region {
+variable "instance" {
   type = string
 }
 
-# Ubuntu 
+variable "region" {
+  type = string
+}
 
-variable ami_name_ubuntu {
+# Ubuntu
+variable "ami_name_ubuntu" {
   type = string
 }
-variable ssh_username_ubuntu {
+
+variable "ssh_username_ubuntu" {
   type = string
 }
-variable source_ami_ubuntu {
+
+variable "source_ami_ubuntu" {
   type = string
   validation {
     condition     = length(var.source_ami_ubuntu) > 4 && substr(var.source_ami_ubuntu, 0, 4) == "ami-"
@@ -28,6 +29,6 @@ variable source_ami_ubuntu {
   }
 }
 
-variable ami_regions {
+variable "ami_regions" {
   type = list(string)
 }

@@ -1,4 +1,3 @@
-
 source "amazon-ebs" "ubuntu" {
   profile       = var.profile
   ami_name      = "${var.ami_name_ubuntu}-${local.timestamp}"
@@ -6,5 +5,5 @@ source "amazon-ebs" "ubuntu" {
   region        = var.region
   source_ami    = var.source_ami_ubuntu
   ssh_username  = var.ssh_username_ubuntu
-  ami_regions   = var.ami_regions # to replicate image to these regions for DR
+  ami_regions   = var.ami_regions
 }
