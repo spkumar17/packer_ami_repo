@@ -1,12 +1,12 @@
 pipeline {
     agent any
+
     stages {
         stage('AWS CLI Installation') {
             steps {
                 sh '''#!/bin/bash
                 # Update package list
                 sudo apt-get update
-                
 
                 # Install dependencies
                 sudo apt-get install -y unzip curl
@@ -25,8 +25,7 @@ pipeline {
                 '''
             }
         }
-    }
-    stages {
+
         stage('Install Packer') {
             steps {
                 sh '''#!/bin/bash
@@ -51,8 +50,8 @@ pipeline {
                 '''
             }
         }
-    }
-        stage("AWS Demo") {
+
+        stage('AWS Demo') {
             steps {
                 withCredentials([
                     [
@@ -66,7 +65,8 @@ pipeline {
                 }
             }
         }
-        stage("Building AMI") {
+
+        stage('Building AMI') {
             steps {
                 withCredentials([
                     [
@@ -76,7 +76,7 @@ pipeline {
                         secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
                     ]
                 ]) {
-                    sh "packer ."
+                    sh "packer init ."
                     sh "packer build -var-file=values.pkrvars.hcl ."
                 }
             }
