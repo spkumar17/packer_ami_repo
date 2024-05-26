@@ -3,8 +3,6 @@ pipeline {
         docker {
             image 'ubuntu:latest' // Specify the Docker image to use
             args '-u root' // Optional: Run as root user inside the container
-            runArgs '-u root' // Additional option to run commands as root
-
         }
     }
     stages {
