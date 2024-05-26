@@ -2,6 +2,7 @@ pipeline {
     agent {
         docker {
             image 'ubuntu:latest' // Specify the Docker image to use
+            args '-u root' // Optional: Run as root user inside the container
 
         }
     }
