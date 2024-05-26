@@ -77,10 +77,10 @@ pipeline {
                     ]
                 ]) {
                     sh "packer init ."
-                    
                     sh "packer build -var-file=values.pkrvars.hcl ."
                 }
             }
         }
     }
 }
+
