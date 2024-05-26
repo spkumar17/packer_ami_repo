@@ -3,13 +3,15 @@ pipeline {
         docker {
             image 'ubuntu:latest' // Specify the Docker image to use
             args '-u root' // Optional: Run as root user inside the container
+            runArgs '-u root' // Additional option to run commands as root
+
         }
     }
     stages {
         stage('Git Installation') {
             steps {
                 sh "sudo apt update"
-                sh "sudo apt install git"
+                sh "sudo apt install git -y"
             }
         }
 
