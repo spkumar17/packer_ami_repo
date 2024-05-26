@@ -1,0 +1,92 @@
+pipeline {
+    agent {
+        docker {
+            image 'ubuntu:latest' // Specify the Docker image to use
+
+        }
+    }
+
+    stages {
+        stage('AWS CLI Installation') {
+            steps {
+                sh '''#!/bin/bash
+                # Update package list
+                sudo apt-get update
+
+                # Install dependencies
+                sudo apt-get install -y unzip curl
+
+                # Download the AWS CLI bundle
+                curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+
+                # Unzip the bundle
+                unzip awscliv2.zip
+
+                # Run the installer
+                sudo ./aws/install
+
+                # Verify the installation
+                aws --version
+                '''
+            }
+        }
+
+        stage('Install Packer') {
+            steps {
+                sh '''#!/bin/bash
+                # Update package list
+                sudo apt-get update
+                
+                # Install dependencies
+                sudo apt-get install -y wget unzip
+                
+                # Download the Packer binary
+                PACKER_VERSION="1.7.10"
+                wget https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip
+                
+                # Unzip the binary
+                unzip packer_${PACKER_VERSION}_linux_amd64.zip
+                
+                # Move the binary to a directory in your PATH
+                sudo mv packer /usr/local/bin/
+                
+                # Verify the installation
+                packer --version
+                '''
+            }
+        }
+
+        stage('AWS Demo') {
+            steps {
+                withCredentials([
+                    [
+                        $class: 'AmazonWebServicesCredentialsBinding',
+                        credentialsId: 'aws_credential',
+                        accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+                        secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
+                    ]
+                ]) {
+                    sh "aws s3 ls"
+                    sh "pwd"
+                }
+            }
+        }
+
+        stage('Building AMI') {
+            steps {
+                withCredentials([
+                    [
+                        $class: 'AmazonWebServicesCredentialsBinding',
+                        credentialsId: 'aws_credential',
+                        accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+                        secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
+                    ]
+                ]) {
+                    sh "packer init ."
+                    sh "packer build -var-file=values.pkrvars.hcl ."
+                }
+            }
+        }
+    }
+}
+
