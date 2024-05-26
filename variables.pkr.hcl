@@ -4,7 +4,7 @@ variable "profile" {
   description = "AWS profile name"
 }
 
-variable "instance" {
+variable "instance_type" {
   type = string
 }
 
