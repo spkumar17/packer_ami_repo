@@ -6,6 +6,15 @@ pipeline {
 
         }
     }
+        stages {
+        stage('git Installation') {
+            steps {
+                sh "sudo apt update"
+                sh "sudo apt install git"
+
+            }
+        }
+
 
     stages {
         stage('AWS CLI Installation') {
