@@ -7,7 +7,7 @@ packer {
     source_ami    = "ami-080660c9757080771"
     ssh_username  = "ubuntu"
     ami_users     = ["437151017659"]
-    ami_regions   = [
+    ami_regions = [
       "ap-southeast-2", # Sydney
       "us-east-1",      # Virginia
       "ap-south-2",     # Hyderabad
