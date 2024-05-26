@@ -2,6 +2,8 @@ pipeline {
     agent {
         docker {
             image 'ubuntu:latest' // Specify the Docker image to use
+            sh "RUN apt-get update && apt-get install -y sudo && rm -rf /var/lib/apt/lists/*"
+
             args '-u root' // Optional: Run as root user inside the container
         }
     }
