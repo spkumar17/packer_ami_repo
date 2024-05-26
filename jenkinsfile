@@ -47,7 +47,9 @@ pipeline {
                 
                 # Verify the installation
                 packer --version
+                # webhook
                 '''
+                
             }
         }
 
