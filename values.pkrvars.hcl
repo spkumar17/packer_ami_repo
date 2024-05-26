@@ -1,4 +1,3 @@
-profile       = "jenkins_admin"
 ami_name      = "ami-version-1.0.1-{{timestamp}}"
 instance_type = "t2.micro"
 region        = "ap-southeast-2"

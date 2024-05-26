@@ -1,8 +1,5 @@
 # Common
-variable "profile" {
-  type        = string
-  description = "AWS profile name"
-}
+
 
 variable "instance_type" {
   type = string
