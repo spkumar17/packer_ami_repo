@@ -1,12 +1,11 @@
 pipeline {
     agent {
-        docker {
-            image 'ubuntu:latest' // Specify the Docker image to use
-        }
+        docker { image 'ubuntu:latest'
     }
     stages {
         stage('Git Installation') {
             steps {
+                sh "RUN apt-get update && apt-get install -y sudo"
                 sh "sudo apt update"
                 sh "sudo apt install git -y"
             }
