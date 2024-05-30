@@ -1,11 +1,13 @@
 pipeline {
     agent {
-        docker { image 'ubuntu:latest'
+        docker { 
+            image 'debian:latest'
+        }
     }
     stages {
         stage('Git Installation') {
             steps {
-                sh "RUN apt-get update && apt-get install -y sudo"
+                sh "apt-get update && apt-get install -y sudo"
                 sh "sudo apt update"
                 sh "sudo apt install git -y"
             }
@@ -15,10 +17,10 @@ pipeline {
             steps {
                 sh '''#!/bin/bash
                     # Update package list
-                    sudo apt-get update
+                    apt-get update
 
                     # Install dependencies
-                    sudo apt-get install -y unzip curl
+                    apt-get install -y unzip curl
 
                     # Download the AWS CLI bundle
                     curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
@@ -27,7 +29,7 @@ pipeline {
                     unzip awscliv2.zip
 
                     # Run the installer
-                    sudo ./aws/install
+                    ./aws/install
 
                     # Verify the installation
                     aws --version
@@ -39,10 +41,10 @@ pipeline {
             steps {
                 sh '''#!/bin/bash
                     # Update package list
-                    sudo apt-get update
+                    apt-get update
                     
                     # Install dependencies
-                    sudo apt-get install -y wget unzip
+                    apt-get install -y wget unzip
                     
                     # Download the Packer binary
                     PACKER_VERSION="1.7.10"
@@ -52,7 +54,7 @@ pipeline {
                     unzip packer_${PACKER_VERSION}_linux_amd64.zip
                     
                     # Move the binary to a directory in your PATH
-                    sudo mv packer /usr/local/bin/
+                    mv packer /usr/local/bin/
                     
                     # Verify the installation
                     packer --version
@@ -93,5 +95,3 @@ pipeline {
         }
     }
 }
-
-
