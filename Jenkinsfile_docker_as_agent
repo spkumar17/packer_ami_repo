@@ -7,8 +7,8 @@ pipeline {
     stages {
         stage('Git Installation') {
             steps {
-                sh "mkdir -p /var/lib/apt/lists/partial"
-                sh "chmod 755 /var/lib/apt/lists/partial"
+                sh "sudo mkdir -p /var/lib/apt/lists/partial"
+                sh "sudo chmod 755 /var/lib/apt/lists/partial"
                 sh "sudo apt update"
                 sh "sudo apt install git -y"
             }
