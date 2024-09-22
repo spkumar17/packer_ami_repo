@@ -6,6 +6,6 @@ ssh_username  = "ubuntu"
 ami_regions   =  [
   // "ap-southeast-2", # Sydney
   // "us-east-1",      # Virginia
-   "ap-south-1",     # Mumbai
+  "ap-south-1",     // Mumbai
   // "ap-northeast-1"
  ]
