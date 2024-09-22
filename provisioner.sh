@@ -22,9 +22,7 @@ sudo bash install
 #install docker 
 sudo yum install docker -y
 sudo systemctl start docker
-
-#need to install more and more "
-
+#-----------------------------------------------------------------------------
 #Ubuntu
 
 #!/usr/bin/env bash
@@ -55,6 +53,5 @@ sudo bash install
 # install docker 
 sudo apt install docker.io -y
 sudo systemctl start docker
-
-#need to install more and more
+usermode -aG docker $USER
 
