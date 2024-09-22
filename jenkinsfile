@@ -54,7 +54,7 @@ pipeline {
 
         stage('AWS Demo') {
             steps {
-                withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: '021891605639', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
+                withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: '021891605639', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) 
                  {
                     sh "aws s3 ls"
                     sh "pwd"
